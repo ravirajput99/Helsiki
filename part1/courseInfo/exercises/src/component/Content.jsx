@@ -1,9 +1,9 @@
 import Part from "./Part"
 
-function Content({parts}) {
+function Content({course}) {
   return (
     <>
-      {parts.map((part, index) => <Part key={index} part={part} />)}
+      {course.parts.map((part, index) => <Part key={index} part={part} />)}
     </>
   )
 }

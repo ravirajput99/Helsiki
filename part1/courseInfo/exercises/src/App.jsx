@@ -3,29 +3,31 @@ import Header from "./component/Header"
 import Total from "./component/Total"
 
 const App = () => {
-  const course = 'Half Stack application development'
-  const parts = [
-    {
-      name: 'Fundamentals of React',
-      exercises: 10
-    },
-    {
-      name: 'Using props to pass data',
-      exercises: 7
-    },
-    {
-      name: 'State of a component',
-      exercises: 14
-    }
-  ]
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  }
 let total=0
-parts.forEach(part => total += part.exercises)
+course.parts.forEach(part => total += part.exercises)
 
   return (
     <div>
       <div>
       <Header course={course} />
-      <Content parts={parts} />
+      <Content course={course} />
       <Total total={total} />
     </div>
     </div>
