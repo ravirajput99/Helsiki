@@ -1,11 +1,9 @@
 import Part from "./Part"
 
-function Content(props) {
+function Content({parts}) {
   return (
     <>
-      <Part part={props.part1}/>
-      <Part part={props.part2}/>
-      <Part part={props.part3} />
+      {parts.map((part, index) => <Part key={index} part={part} />)}
     </>
   )
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Part(props) {
+function Part({part}) {
   return (
-    <p>{props.part.name} {props.part.exercises}</p>
+    <p>{part.name} {part.exercises}</p>
   )
 }
 
