@@ -7,8 +7,14 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const handleSubmit = (event) => {
     event.preventDefault()
-    setPersons(persons.concat({ name: newName }))
-    setNewName('')
+    if (persons.findIndex(person => person.name === newName) !== -1) {
+      alert(`${newName} is already added to phonebook`)
+    }
+    else {
+      setPersons(persons.concat({ name: newName }))
+      setNewName('')
+    }
+
   }
   return (
     <div>
