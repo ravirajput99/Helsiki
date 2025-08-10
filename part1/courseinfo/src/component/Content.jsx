@@ -1,6 +1,6 @@
 import Part from "./Part"
 
-function Content({course}) {
+function Content({ course }) {
   return (
     <>
       {course.parts.map((part, index) => <Part key={index} part={part} />)}
