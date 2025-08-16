@@ -3,27 +3,35 @@ import Filter from './Filter'
 import PersonForm from './PersonForm'
 import Persons from './Persons'
 import phonebook from '../server/phonebook'
+import Notification from './Notification'
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [search, setSearch] = useState('')
+  const [message, setMessage] = useState(null)
   const handleSubmit = (event) => {
     event.preventDefault()
     const index = persons.findIndex(person => person.name === newName)
     if (index !== -1) {
       if (confirm(`${newName} is already added to phonebook, replace the old one with the new one?`)) {
         phonebook.updatePhonebook(persons[index].id, { name: newName, number: newNumber, id: persons[index].id }).then(response => setPersons(persons.map(person => person.id === response.id ? response : person)))
+        setMessage(`Updated ${newName}'s number to ${newNumber}`)
       }
     }
     else {
       if (newName && newNumber) {
         phonebook.createPhonebook({ name: newName, number: newNumber, id: newName + persons.length })
         setPersons(persons.concat({ name: newName, number: newNumber, id: newName + persons.length }))
+        setMessage(`Added ${newName}`)
+
       }
     }
     setNewName('')
     setNewNumber('')
+    setTimeout(() => {
+      setMessage(null)
+    }, 2000)
 
   }
   useEffect(() => {
@@ -45,6 +53,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification message={message} />
       <Filter search={search} handleSearch={handleSearch} />
       <h2>add a new</h2>
       <PersonForm newName={newName} newNumber={newNumber} setNewName={setNewName} setNewNumber={setNewNumber} handleSubmit={handleSubmit} />
