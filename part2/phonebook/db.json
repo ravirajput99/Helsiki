@@ -1,16 +1,6 @@
 {
   "persons": [
     {
-      "name": "ravi",
-      "number": "827",
-      "id": "ravi0"
-    },
-    {
-      "id": "jadeja1",
-      "name": "jadeja",
-      "number": "124"
-    },
-    {
       "id": "ramesh2",
       "name": "ramesh",
       "number": "jadu"

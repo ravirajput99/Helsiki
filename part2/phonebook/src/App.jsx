@@ -23,7 +23,7 @@ const App = () => {
       if (newName && newNumber) {
         phonebook.createPhonebook({ name: newName, number: newNumber, id: newName + persons.length })
         setPersons(persons.concat({ name: newName, number: newNumber, id: newName + persons.length }))
-        setMessage(`Added ${newName}`)
+        setMessage({ success: `Added ${newName}` })
 
       }
     }
@@ -47,7 +47,12 @@ const App = () => {
     if (window.confirm(`Delete ${deletePerson.name} ?`)) {
       phonebook.deletePhonebook(id, { name: deletePerson.name, number: deletePerson.number, id: deletePerson.id }).then(response => {
         setPersons(persons.filter(person => person.id !== id))
+      }).catch(response => {
+        setMessage({ error: `Information of ${deletePerson.name} has already been removed from the server` });
       })
+      setTimeout(() => {
+        setMessage(null)
+      }, 2000)
     }
   }
   return (
