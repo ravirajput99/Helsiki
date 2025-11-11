@@ -64,10 +64,21 @@ const generateId = () => {
 app.use(express.json());
 app.post("/api/persons", (req, res) => {
   const body = req.body;
-  console.log(body);
+  if (!body.name) {
+    return res.status(400).json({ error: "name missing" });
+  } else if (!body.number) {
+    return res.status(400).json({ error: "number missing" });
+  } else if (
+    persons.findIndex(
+      (person) =>
+        person.name.toLocaleLowerCase() === body.name.toLocaleLowerCase()
+    ) !== -1
+  ) {
+    return res.status(400).json({ error: "name must be unique" });
+  }
   const person = {
     name: body.name,
-    number: body.number || "",
+    number: body.number,
     id: generateId(),
   };
   persons = persons.concat(person);
