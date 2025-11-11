@@ -1,0 +1,25 @@
+{
+  "name": "phonebook-backend",
+  "version": "1.0.0",
+  "description": "phonebook backend apis",
+  "homepage": "https://github.com/ravirajput99/Helsiki#readme",
+  "bugs": {
+    "url": "https://github.com/ravirajput99/Helsiki/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ravirajput99/Helsiki.git"
+  },
+  "license": "ISC",
+  "author": "Ravi Rajput",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start":"node index.js",
+    "dev":"node --watch index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
