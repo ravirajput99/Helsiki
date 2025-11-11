@@ -51,6 +51,29 @@ app.delete("/api/persons/:id", (req, res) => {
   persons = persons.filter((person) => person.id !== id);
   res.status(204).end();
 });
+
+const generateId = () => {
+  const maxId =
+    persons.length > 0
+      ? Math.max(
+          ...persons.map((n) => Number(n.id), parseInt(Math.random() * 1000))
+        )
+      : 0;
+  return String(maxId + 1);
+};
+app.use(express.json());
+app.post("/api/persons", (req, res) => {
+  const body = req.body;
+  console.log(body);
+  const person = {
+    name: body.name,
+    number: body.number || "",
+    id: generateId(),
+  };
+  persons = persons.concat(person);
+  res.json(person);
+});
+
 app.listen(3000, () => {
   console.log(`Server listening at port ${3000}`);
 });
