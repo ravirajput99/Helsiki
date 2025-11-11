@@ -26,6 +26,19 @@ const persons=[
 app.get('/api/persons',(req,res)=>{
     res.send(persons)
 })
+const getDate=()=>{
+    const date = new Date()
+    return date.toString()
+}
+app.get('/api/info',(req,res)=>{
+    
+    res.send(
+        `<p>phonebook has info for ${persons.length} people</p>
+        <p>${getDate()}</p>
+        `
+    )
+    
+})
 app.listen(3000,()=>{
     console.log(`Server listening at port ${3000}`)
 })
