@@ -1,5 +1,5 @@
 const express = require("express");
-
+const morgan = require("morgan");
 const app = express();
 let persons = [
   {
@@ -23,6 +23,8 @@ let persons = [
     number: "39-23-6423122",
   },
 ];
+app.use(morgan("tiny"));
+
 app.get("/api/persons", (req, res) => {
   res.send(persons);
 });
