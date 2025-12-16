@@ -23,7 +23,7 @@ let persons = [
     number: "39-23-6423122",
   },
 ];
-
+app.use(express.static("dist"));
 morgan.token("response", (req, res) => JSON.stringify(req.body));
 app.use(
   morgan(function (tokens, req, res) {
@@ -101,7 +101,7 @@ app.post("/api/persons", (req, res) => {
   persons = persons.concat(person);
   res.json(person);
 });
-
-app.listen(3000, () => {
-  console.log(`Server listening at port ${3000}`);
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server listening at port ${PORT}`);
 });
